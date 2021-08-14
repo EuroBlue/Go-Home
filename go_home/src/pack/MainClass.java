@@ -15,4 +15,4 @@ public class MainClass{
         return min + r.nextInt((max-min+1)) +min;
     }
 }
-// TODO: game itself
+//TODO: key and action activation
