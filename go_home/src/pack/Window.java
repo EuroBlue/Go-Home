@@ -351,6 +351,7 @@ public class Window implements ActionListener,KeyListener {
         }
         if(e.getSource()==return_b)
         {
+            window.dispose();
             start();
         }
     }
