@@ -5,8 +5,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import javax.xml.namespace.QName;
-
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.Color;
@@ -22,6 +20,10 @@ public class Window implements ActionListener,KeyListener {
     private static ImageIcon header_img=new ImageIcon("go_home\\lib\\header.png");
     private static ImageIcon play=new ImageIcon("go_home\\lib\\play.png");
     private static ImageIcon backIcon=new ImageIcon("go_home\\lib\\background.png");
+    private static ImageIcon darkIcon=new ImageIcon("go_home\\lib\\dark.png");
+    private static ImageIcon returnIcon=new ImageIcon("go_home\\lib\\return.png");
+    private static JLabel curFigLabel;
+    private static JButton return_b;
 
     private static JButton start;
 
@@ -62,7 +64,6 @@ public class Window implements ActionListener,KeyListener {
         header.setIcon(header_img);
 		header.setBounds(0, 0, 800, 200);
 		header.setVisible(true);
-        windowPanel.addKeyListener(new Window());
 		windowPanel.add(header);
 		header.setVisible(true);
 
@@ -72,7 +73,6 @@ public class Window implements ActionListener,KeyListener {
 		start.setBounds(185, 300, 370, 80);
 		windowPanel.add(start);
 		start.addActionListener(new Window());
-        start.addKeyListener(new Window());
 
         back=new JLabel();
         back.setIcon(backIcon);
@@ -80,7 +80,6 @@ public class Window implements ActionListener,KeyListener {
 		back.setVisible(true);
 		windowPanel.add(back);
 		back.setVisible(true);
-        back.addKeyListener(new Window());
 
 
 
@@ -98,7 +97,6 @@ public class Window implements ActionListener,KeyListener {
 		question.setVisible(true);
 		windowPanel.add(question);
 		question.setVisible(true);
-        question.addKeyListener(new Window());
 
         random=new JButton();
         random.setIcon(randIcon);
@@ -127,8 +125,9 @@ public class Window implements ActionListener,KeyListener {
 		back.setVisible(true);
 		windowPanel.add(back);
 		back.setVisible(true);
-        back.addKeyListener(new Window());
 
+
+        window.requestFocus();
         window.repaint();
     }
     private static void startGame(Game g)
@@ -201,6 +200,16 @@ public class Window implements ActionListener,KeyListener {
         fieldLabel.add(curFig_2);
         curFig_2.setVisible(true);
 
+        curFigLabel=new JLabel(cur_Figures[0].getIndex()+" "+cur_Figures[1].getIndex());
+        curFigLabel.setBounds(0,700, 740, 100);
+        curFigLabel.setVerticalAlignment(JLabel.TOP);
+        curFigLabel.setHorizontalAlignment(JLabel.CENTER);
+        curFigLabel.setForeground(Color.WHITE);
+        curFigLabel.setFont(new Font("Calibri", Font.PLAIN, 100));
+        curFigLabel.setVisible(true);
+        windowPanel.add(curFigLabel);
+        curFigLabel.setVisible(true);
+
         back=new JLabel();
         back.setIcon(backIcon);
 		back.setBounds(0, 0, 740, 800);
@@ -208,6 +217,7 @@ public class Window implements ActionListener,KeyListener {
 		windowPanel.add(back);
 		back.setVisible(true);
 
+        window.requestFocus();
         fieldLabel.repaint();
         window.repaint();
     }
@@ -218,20 +228,15 @@ public class Window implements ActionListener,KeyListener {
         play.setFocusPainted(false); 
         play.setOpaque(false);
     }
-    public void frame(Game g)
+    public static void frame(Game g)
     {
-        windowPanel.remove(back);
-        windowPanel.remove(question);
-        windowPanel.remove(blue);
-        windowPanel.remove(red);
-        windowPanel.remove(random);
-
-        fieldLabel=new JLabel();
-        fieldLabel.setIcon(fieldIcon);
-		fieldLabel.setBounds(115, 200, 500, 500);
-		fieldLabel.setVisible(true);
-		windowPanel.add(fieldLabel);
-		fieldLabel.setVisible(true);
+        if(!win())
+        {
+            g.throwCubes();
+        }
+        game=g;
+        cur_Figures=g.getCurFig();
+        windowPanel.addKeyListener(new Window());
 
         for (int i = 0; i < 2; i++) {
             for (int j = 0; j < 2; j++) {
@@ -240,24 +245,6 @@ public class Window implements ActionListener,KeyListener {
                 fieldLabel.add(g.getPlayers()[i].getFigures()[j].getLabel());
             }
         }
-        infoBlue=new JLabel("<html>B<br/>L<br/>U<br/>E</html>");
-        infoBlue.setVerticalAlignment(JLabel.TOP);
-        infoBlue.setHorizontalAlignment(JLabel.CENTER);
-        infoBlue.setForeground(Color.WHITE);
-        infoBlue.setFont(new Font("Calibri", Font.PLAIN, 75));
-        infoBlue.setVisible(false);
-        windowPanel.add(infoBlue);
-        infoBlue.setBounds(10, 200, 100, 500);
-
-        infoRed=new JLabel("<html>R<br/>E<br/>D</html>");
-        infoRed.setVerticalAlignment(JLabel.TOP);
-        infoRed.setHorizontalAlignment(JLabel.CENTER);
-        infoRed.setForeground(Color.WHITE);
-        infoRed.setFont(new Font("Calibri", Font.PLAIN, 100));
-        infoRed.setVisible(false);
-        windowPanel.add(infoRed);
-        infoRed.setBounds(630, 200, 100, 500);
-
 
         if (g.getCurrentPlayer()==0) 
         {
@@ -269,29 +256,79 @@ public class Window implements ActionListener,KeyListener {
             infoRed.setVisible(true);
         }
         
-        curFig_1=new JLabel();
-        curFig_1.setIcon(curFig);
         curFig_1.setBounds(g.getCurFig()[0].getCell().getX(),g.getCurFig()[0].getCell().getY(), 77, 78);
-        curFig_1.setVisible(true);
-        fieldLabel.add(curFig_1);
-        curFig_1.setVisible(true);
-
-        curFig_2=new JLabel();
-        curFig_2.setIcon(curFig);
         curFig_2.setBounds(g.getCurFig()[1].getCell().getX(),g.getCurFig()[1].getCell().getY(), 77, 78);
-        curFig_2.setVisible(true);
-        fieldLabel.add(curFig_2);
-        curFig_2.setVisible(true);
 
-        back=new JLabel();
-        back.setIcon(backIcon);
-		back.setBounds(0, 0, 740, 800);
-		back.setVisible(true);
-		windowPanel.add(back);
-		back.setVisible(true);
-
+        // for (Figure figure : cur_Figures) {
+        //     for (int i = 0; i < 4; i++) {
+        //         try {
+        //             System.out.println(figure.getCell().getFigures()[i].getColour());
+        //             figure.getCell().getFigures()[i].getLabel().setIcon(figure.getCell().getFigures()[i].getTransparent());
+        //             figure.getCell().getFigures()[i].getLabel().repaint();
+        //         } catch (Exception e) {
+        //         }
+        //     }
+        // }
+        window.requestFocus();
         fieldLabel.repaint();
         window.repaint();
+        
+    }
+    public static boolean win()
+    {
+        String win_text="";
+        Color fg=Color.BLACK;
+        if ((cur_Figures[0].getWin()&&cur_Figures[1].getWin())&&cur_Figures[0].getPlayer()!=cur_Figures[1].getPlayer()) {
+            win_text="Draw!";
+            System.out.println(win_text);
+            fg=Color.WHITE;
+        }
+        else if (cur_Figures[0].getWin()) {
+            win_text=cur_Figures[0].getColour()+" Won!";
+            System.out.println(win_text);
+            fg=cur_Figures[0].getPlayer().getColor();
+        }
+        else if (cur_Figures[1].getWin()) {
+            win_text=cur_Figures[1].getColour()+" Won!";
+            System.out.println(win_text);
+            fg=cur_Figures[1].getPlayer().getColor();
+        }
+        if (cur_Figures[0].getWin()||cur_Figures[1].getWin()) {
+            playing=false;
+            JLabel dark=new JLabel();
+            dark.setIcon(darkIcon);
+            dark.setBounds(0, 0, 740, 800);
+            dark.setVisible(true);
+            windowPanel.add(dark);
+            dark.setVisible(true);
+
+            return_b=new JButton();
+            return_b.setIcon(returnIcon);
+            cleanButton(return_b);
+            return_b.setBounds(185, 300, 370, 80);
+            return_b.addActionListener(new Window());
+
+            JLabel congrats=new JLabel(win_text, SwingConstants.CENTER);
+            congrats.setFont(new Font("Calibri", Font.PLAIN, 70));
+            congrats.setForeground(fg);
+            congrats.setBounds(145, 200, 450, 80);
+            congrats.setVisible(true);
+            congrats.setVisible(true);
+
+            windowPanel.add(congrats);
+            windowPanel.add(return_b);
+            windowPanel.add(dark);
+            windowPanel.add(infoBlue);
+            windowPanel.add(infoRed);
+            windowPanel.add(fieldLabel);
+            windowPanel.add(back);
+            window.repaint();
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -316,46 +353,57 @@ public class Window implements ActionListener,KeyListener {
             }
             startGame(new Game(first));
         }
+        if(e.getSource()==return_b)
+        {
+            start();
+        }
     }
-    //this takes care of key events like
     @Override
-    //key was typed
-    public void keyTyped(KeyEvent keyEvent) {
-        System.out.println("1");
+    public void keyTyped(KeyEvent keyEvent) {;
     }
 
     @Override
-    //key was pressed
     public void keyPressed(KeyEvent keyEvent) {
-        //moving(keyEvent);
-        System.out.println("2");
+        moving(keyEvent);
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        System.out.println("3");
     }
 
     public static void moving(KeyEvent ke){
-        String direction;
-        //this could probaly be optimzed with just getting the right cordinats but meh ima do it like this makes more sens
-        //todo add WASD Support
-        if (ke.getKeyCode() == KeyEvent.VK_RIGHT ) {
-            //Right arrow key code
-            direction = "right";
-            System.out.println(direction);
-        } else if (ke.getKeyCode() == KeyEvent.VK_LEFT ) {
-            //Left arrow key code
-            direction = "left";
-            System.out.println(direction);
-        } else if (ke.getKeyCode() == KeyEvent.VK_UP ) {
-            //Up arrow key code
-            direction = "up";
-            System.out.println(direction);
-        } else if (ke.getKeyCode() == KeyEvent.VK_DOWN ) {
-            //Down arrow key code
-            direction = "down";
-            System.out.println(direction);
+        if(playing)
+        {
+            String direction;
+            if (ke.getKeyCode() == KeyEvent.VK_RIGHT||ke.getKeyCode() == KeyEvent.VK_D) {
+                direction = "right";
+                System.out.println(direction);
+                for (Figure figure : cur_Figures) {
+                    figure.moveFigure(figure.getCell().getArrX()+1, figure.getCell().getArrY());
+                }
+                frame(game);
+            } else if (ke.getKeyCode() == KeyEvent.VK_LEFT||ke.getKeyCode() == KeyEvent.VK_A) {
+                direction = "left";
+                System.out.println(direction);
+                for (Figure figure : cur_Figures) {
+                    figure.moveFigure(figure.getCell().getArrX()-1, figure.getCell().getArrY());
+                }
+                frame(game);
+            } else if (ke.getKeyCode() == KeyEvent.VK_UP||ke.getKeyCode() == KeyEvent.VK_W ) {
+                direction = "up";
+                System.out.println(direction);
+                for (Figure figure : cur_Figures) {
+                    figure.moveFigure(figure.getCell().getArrX(), figure.getCell().getArrY()-1);
+                }
+                frame(game);
+            } else if (ke.getKeyCode() == KeyEvent.VK_DOWN||ke.getKeyCode() == KeyEvent.VK_S) {
+                direction = "down";
+                System.out.println(direction);
+                for (Figure figure : cur_Figures) {
+                    figure.moveFigure(figure.getCell().getArrX(), figure.getCell().getArrY()+1);
+                }
+                frame(game);
+            }
         }
-}
+    }
 }

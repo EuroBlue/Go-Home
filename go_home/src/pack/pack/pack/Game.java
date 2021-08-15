@@ -1,4 +1,5 @@
 package pack;
+
 public class Game {
     private Field GameField;
     private Player[] players=new Player[2];
@@ -59,6 +60,14 @@ public class Game {
         else
         {
             int_double=false;
+        }
+        if(cur_player==0)
+        {
+            cur_player=1;
+        }
+        else
+        {
+            cur_player=0;
         }
     }
     public boolean getDouble()
