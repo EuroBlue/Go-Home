@@ -338,11 +338,11 @@ public class Window implements ActionListener,KeyListener {
             }
             else if(e.getSource()==blue)
             {
-                first=0;
+                first=1;
             }
             else
             {
-                first=1;
+                first=0;
             }
             startGame(new Game(first));
         }
