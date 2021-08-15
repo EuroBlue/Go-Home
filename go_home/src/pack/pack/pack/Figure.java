@@ -21,21 +21,21 @@ public class Figure extends MainClass{
         cell=c;
         field=f;
         index=i;
-        if (i==1) 
+        if (index==1) 
         {
             System.out.println("seted for 1");
             label=new JLabel();
             transparent=new ImageIcon("go_home\\lib\\transparent\\blue_1.png");
             label.setIcon(_1);
         }
-        else if (i==2)
+        else if (index==2)
         {
             System.out.println("seted for 2");
             label=new JLabel();
             transparent=new ImageIcon("go_home\\lib\\transparent\\blue_2.png");
             label.setIcon(_2);
         }
-        else if (i==3)
+        else if (index==3)
         {
             System.out.println("seted for 3");
             label=new JLabel();

@@ -200,12 +200,12 @@ public class Window implements ActionListener,KeyListener {
         fieldLabel.add(curFig_2);
         curFig_2.setVisible(true);
 
-        curFigLabel=new JLabel(cur_Figures[0].getIndex()+" "+cur_Figures[1].getIndex());
+        curFigLabel=new JLabel(cur_Figures[0].getIndex()+"   "+cur_Figures[1].getIndex());
         curFigLabel.setBounds(0,700, 740, 100);
         curFigLabel.setVerticalAlignment(JLabel.TOP);
         curFigLabel.setHorizontalAlignment(JLabel.CENTER);
         curFigLabel.setForeground(Color.WHITE);
-        curFigLabel.setFont(new Font("Calibri", Font.PLAIN, 100));
+        curFigLabel.setFont(new Font("Calibri", Font.PLAIN, 75));
         curFigLabel.setVisible(true);
         windowPanel.add(curFigLabel);
         curFigLabel.setVisible(true);
@@ -259,16 +259,8 @@ public class Window implements ActionListener,KeyListener {
         curFig_1.setBounds(g.getCurFig()[0].getCell().getX(),g.getCurFig()[0].getCell().getY(), 77, 78);
         curFig_2.setBounds(g.getCurFig()[1].getCell().getX(),g.getCurFig()[1].getCell().getY(), 77, 78);
 
-        // for (Figure figure : cur_Figures) {
-        //     for (int i = 0; i < 4; i++) {
-        //         try {
-        //             System.out.println(figure.getCell().getFigures()[i].getColour());
-        //             figure.getCell().getFigures()[i].getLabel().setIcon(figure.getCell().getFigures()[i].getTransparent());
-        //             figure.getCell().getFigures()[i].getLabel().repaint();
-        //         } catch (Exception e) {
-        //         }
-        //     }
-        // }
+        curFigLabel.setText(cur_Figures[0].getIndex()+"   "+cur_Figures[1].getIndex());
+
         window.requestFocus();
         fieldLabel.repaint();
         window.repaint();
@@ -318,6 +310,7 @@ public class Window implements ActionListener,KeyListener {
             windowPanel.add(congrats);
             windowPanel.add(return_b);
             windowPanel.add(dark);
+            windowPanel.add(curFigLabel);
             windowPanel.add(infoBlue);
             windowPanel.add(infoRed);
             windowPanel.add(fieldLabel);
