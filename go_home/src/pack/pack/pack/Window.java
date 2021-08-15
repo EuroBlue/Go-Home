@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 public class Window implements ActionListener,KeyListener {
@@ -22,6 +23,7 @@ public class Window implements ActionListener,KeyListener {
     private static ImageIcon backIcon=new ImageIcon("go_home\\lib\\background.png");
     private static ImageIcon darkIcon=new ImageIcon("go_home\\lib\\dark.png");
     private static ImageIcon returnIcon=new ImageIcon("go_home\\lib\\return.png");
+    private static Image windowIcon=new ImageIcon("go_home\\lib\\ico.png").getImage();
     private static JLabel curFigLabel;
     private static JButton return_b;
 
@@ -58,6 +60,7 @@ public class Window implements ActionListener,KeyListener {
 		window.setVisible(true);
 		window.add(windowPanel);
 		window.setResizable(false);
+        window.setIconImage(windowIcon);
 
         header=new JLabel();
         header.setForeground(new Color(0,0,0,50));
