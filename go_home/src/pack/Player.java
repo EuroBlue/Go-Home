@@ -1,4 +1,4 @@
-package pack;
+
 import java.awt.Color;
 public class Player extends MainClass{
     private Game game;

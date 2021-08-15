@@ -1,4 +1,4 @@
-package pack;
+
 
 public class Field {
     private Cell[] x;

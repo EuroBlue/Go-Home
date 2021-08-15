@@ -1,4 +1,4 @@
-package pack;
+
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 public class Figure extends MainClass{
