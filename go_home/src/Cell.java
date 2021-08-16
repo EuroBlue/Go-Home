@@ -1,4 +1,3 @@
-
 public class Cell {
     private int x;
     private int y;
@@ -61,5 +60,9 @@ public class Cell {
     public Figure[] getFigures()
     {
         return figures;
+    }
+    public Field getField()
+    {
+        return field;
     }
 }

@@ -1,5 +1,3 @@
-
-
 public class Field {
     private Cell[] x;
     private Cell[] y;
@@ -17,6 +15,18 @@ public class Field {
     public Cell[][] getCells()
     {
         return xy;
+    }
+    public Cell[] getCellX()
+    {
+        return x;
+    }
+    public Cell[] getCellY()
+    {
+        return y;
+    }
+    public Game getGame()
+    {
+        return game;
     }
     
 }
