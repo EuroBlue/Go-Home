@@ -12,18 +12,34 @@ public class Field {
             }
         }
     }
+    
+    /** 
+     * @return Cell[][]
+     */
     public Cell[][] getCells()
     {
         return xy;
     }
+    
+    /** 
+     * @return Cell[]
+     */
     public Cell[] getCellX()
     {
         return x;
     }
+    
+    /** 
+     * @return Cell[]
+     */
     public Cell[] getCellY()
     {
         return y;
     }
+    
+    /** 
+     * @return Game
+     */
     public Game getGame()
     {
         return game;

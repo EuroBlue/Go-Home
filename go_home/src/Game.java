@@ -1,5 +1,3 @@
-
-
 public class Game {
     private Field GameField;
     private Player[] players=new Player[2];
@@ -31,14 +29,26 @@ public class Game {
         }
         this.throwCubes();
     }
+    
+    /** 
+     * @return Field
+     */
     public Field getField()
     {
         return GameField;
     }
+    
+    /** 
+     * @return Player[]
+     */
     public Player[] getPlayers()
     {
         return players;
     }
+    
+    /** 
+     * @return int
+     */
     public int getCurrentPlayer()
     {
         return cur_player;
@@ -70,10 +80,18 @@ public class Game {
             cur_player=0;
         }
     }
+    
+    /** 
+     * @return boolean
+     */
     public boolean getDouble()
     {
         return int_double;
     }
+    
+    /** 
+     * @return Figure[]
+     */
     public Figure[] getCurFig()
     {
         return currentFigures;

@@ -1,4 +1,3 @@
-
 import java.awt.Color;
 public class Player extends MainClass{
     private Game game;
@@ -26,10 +25,18 @@ public class Player extends MainClass{
             figures[1]=new Figure(this, colour, game.getField().getCells()[0][4],field,4);
         }
     }
+    
+    /** 
+     * @return Figure[]
+     */
     public Figure[] getFigures()
     {
         return figures;
     }
+    
+    /** 
+     * @return Color
+     */
     public Color getColor()
     {
         return colour_int;

@@ -357,16 +357,13 @@ public class Window implements ActionListener,KeyListener {
     @Override
     public void keyTyped(KeyEvent keyEvent) {;
     }
-
     @Override
     public void keyPressed(KeyEvent keyEvent) {
         moving(keyEvent);
     }
-
     @Override
     public void keyReleased(KeyEvent e) {
     }
-
     public static void moving(KeyEvent ke){
         if(playing)
         {

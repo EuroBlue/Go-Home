@@ -1,8 +1,6 @@
-
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 public class Figure extends MainClass{
-    // private static ImageIcon _1= new ImageIcon("go_home\\lib\\blue_1.png");
     private static ImageIcon _1= new ImageIcon("go_home\\lib\\transparent\\blue_1.png");
     private static ImageIcon _2= new ImageIcon("go_home\\lib\\transparent\\blue_2.png");
     private static ImageIcon _3= new ImageIcon("go_home\\lib\\transparent\\red_1.png");
@@ -51,6 +49,7 @@ public class Figure extends MainClass{
         }
         cell.setFigure(this);
     }
+    
     public void moveFigure(int x,int y)
     {
         if(x>4)
